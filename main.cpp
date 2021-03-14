@@ -1,12 +1,13 @@
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
+
 #endif
 
 #define GLFW_INCLUDE_NONE
 
 #include <iostream>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <OpenGL/gl3.h>
 
 void error_callback(int error, const char* message)
 {
@@ -40,6 +41,13 @@ int main()
     }
 
     glfwMakeContextCurrent(window);
+
+    // should be initialized after glfwMakeContextCurrent
+    if (glewInit() != GLEW_OK)
+    {
+        std::cout << "Glew initialization failed\n";
+        return -1;
+    }
     
     glfwSetKeyCallback(window, key_callback);
 

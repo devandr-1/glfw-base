@@ -13,6 +13,8 @@ target_link_libraries(app OpenGL::GL)
 target_include_directories(app PUBLIC ${glfw_include})
 target_link_libraries(app ${glfw_lib})
 
+target_link_libraries(app glew)
+
 if(APPLE)
     target_link_libraries(app "-framework Cocoa -framework IOKit")
 endif()
